@@ -1,7 +1,7 @@
 import {Given, Then, When} from '@badeball/cypress-cucumber-preprocessor'
 //import { CashierPage } from './pos-Page/cashier'
 //const cashierPage = new CashierPage()
-Given('I visit home page',()=>{
+Given('I am on pos cashoir page',()=>{
     cy.visit('/')
 })
 
@@ -14,11 +14,11 @@ Then('I Select Cashier {string}',function (cashierValue:string) {
     })
 })
 
-When('I click {string} button',function (buttonName:string){
+When('I Click {string} button',function (buttonName:string){
     cy.contains('button',buttonName).click()
 })
 
-Then('I add item in {string} with quantity {int}',function(itemName:string,qty:number){
+Then('I Add item in {string} with quantity {int}',function(itemName:string,qty:number){
     for (let i=0;i<qty;i++){
     cy.get('tbody tr').contains('td',itemName).parent().within(($row)=>{
         cy.get('td button').eq(1).click()
@@ -26,7 +26,7 @@ Then('I add item in {string} with quantity {int}',function(itemName:string,qty:n
 }
 })
 
-Then('I calculate {string} total cost',function(itemName:string){
+Then('I Calculate {string} total cost',function(itemName:string){
     cy.get('tbody tr').contains('td',itemName).parent().within(($row)=>{
         let formatTotalPrice: number
         let formatPrice:number
@@ -47,7 +47,7 @@ Then('I calculate {string} total cost',function(itemName:string){
     })
 })
 
-Then('I evaluate total item',function(){
+Then('I Calculate total item',function(){
     let totalItem:number =0
     let items: number
     cy.get('tbody tr').parent().within(($row)=>{
@@ -68,7 +68,7 @@ Then('I evaluate total item',function(){
         })
 })
 
-Then('I calculate total cost',function(){
+Then('I Calculate total cost',function(){
         // add the logic
         let totalCost:number =0
         let finalCost:number

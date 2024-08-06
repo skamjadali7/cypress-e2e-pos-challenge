@@ -1,46 +1,23 @@
-Feature: Test one
-Background: Page Landing
-      Given I visit home page
+Feature: e2e pos sale
+Background: pos home page
+      Given I am on pos cashoir page
 
-  Scenario: Cashier 1
-    Then I Select Cashier "1"
-    When I click "Next" button
-    When I click "Add Sale" button
-    Then I add item in "Apple" with quantity 2
-    Then I calculate "Apple" total cost
-    Then I add item in "Orange" with quantity 2
-    Then I calculate "Orange" total cost
-    Then I add item in "Strawberries" with quantity 2
-    Then I calculate "Strawberries" total cost
-    Then I evaluate total item
-    Then I calculate total cost
-    Then I click "Submit" button
+  Scenario Outline: Cashier Sale Report
+    Then I Select Cashier "<CashierNumber>"
+    When I Click "Next" button
+    When I Click "Add Sale" button
+    Then I Add item in "<ItemName1>" with quantity <Quantity1>
+    Then I Calculate "<ItemName1>" total cost
+    Then I Add item in "<ItemName2>" with quantity <Quantity2>
+    Then I Calculate "<ItemName2>" total cost
+    Then I Add item in "<ItemName3>" with quantity <Quantity3>
+    Then I Calculate "<ItemName3>" total cost
+    Then I Calculate total item
+    Then I Calculate total cost
+    Then I Click "Submit" button
 
-  Scenario: Cashier 2
-    Then I Select Cashier "2"
-    When I click "Next" button
-    When I click "Add Sale" button
-    Then I add item in "Apple" with quantity 2
-    Then I calculate "Apple" total cost
-    Then I add item in "Orange" with quantity 2
-    Then I calculate "Orange" total cost
-    Then I add item in "Strawberries" with quantity 2
-    Then I calculate "Strawberries" total cost
-    Then I evaluate total item
-    Then I calculate total cost
-    Then I click "Submit" button
-
-  Scenario: Cashier 3
-    Then I Select Cashier "3"
-    When I click "Next" button
-    When I click "Add Sale" button
-    Then I add item in "Apple" with quantity 2
-    Then I calculate "Apple" total cost
-    Then I add item in "Orange" with quantity 2
-    Then I calculate "Orange" total cost
-    Then I add item in "Strawberries" with quantity 2
-    Then I calculate "Strawberries" total cost
-    Then I evaluate total item
-    Then I calculate total cost
-    Then I click "Submit" button
-
+  Examples:
+    | CashierNumber | ItemName1    | Quantity1 | ItemName2 | Quantity2 | ItemName3    | Quantity3 |
+    | 1             | Apple        | 2         | Orange    | 2         | Strawberries | 2         |
+    | 2             | Apple        | 2         | Orange    | 2         | Strawberries | 2         |
+    | 3             | Apple        | 2         | Orange    | 2         | Strawberries | 2         |
