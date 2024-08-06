@@ -41,7 +41,8 @@ Then('I calculate {string} total cost',function(itemName:string){
             quantity = value
         }).then(()=>{
             console.log(quantity,formatPrice,formatTotalPrice)
-            cy.wrap(quantity*formatPrice).should('equal',formatTotalPrice)
+            expect(quantity*formatPrice).to.equal(formatTotalPrice)
+           // cy.wrap(quantity*formatPrice).should('equal',formatTotalPrice)
         })
     })
 })
@@ -67,9 +68,19 @@ Then('I evaluate total item',function(){
         })
 })
 
-Then('I evalue total cost',function(){
-    cy.get('tbody tr td').parent().within(($row)=>{
+Then('I calculate total cost',function(){
         // add the logic
-    })
+        let totalCost:number =0
+        let finalCost:number
+        cy.get('tbody tr td:nth-child(4)').each(($ele)=>{
+            cy.wrap($ele).invoke('text').then((text)=>{
+                const cost:any = parseFloat(text.replace('$',''))
+                totalCost = totalCost +cost
+            })
+        })
+        cy.get('h6').eq(1).invoke('text').then((text:any)=>{
+            finalCost = parseFloat(text.replace('Cost: $',''))
+            expect(finalCost.toFixed(2)).to.equal(totalCost.toFixed(2))
+        })
 })
 
