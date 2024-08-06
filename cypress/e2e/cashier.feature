@@ -7,13 +7,13 @@ Background: pos home page
     When I Click "Next" button
     When I Click "Add Sale" button
     Then I Add item in "<ItemName1>" with quantity <Quantity1>
-    Then I Calculate "<ItemName1>" total cost
+    And I Calculate "<ItemName1>" total cost
     Then I Add item in "<ItemName2>" with quantity <Quantity2>
-    Then I Calculate "<ItemName2>" total cost
+    And I Calculate "<ItemName2>" total cost
     Then I Add item in "<ItemName3>" with quantity <Quantity3>
-    Then I Calculate "<ItemName3>" total cost
-    Then I Calculate total item
-    Then I Calculate total cost
+    And I Calculate "<ItemName3>" total cost
+    And I Calculate total item
+    And I Calculate total cost
     Then I Click "Submit" button
 
   Examples:

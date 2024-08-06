@@ -6,7 +6,6 @@ Given('I am on pos cashoir page',()=>{
 })
 
 Then('I Select Cashier {string}',function (cashierValue:string) {
-    //cashierPage.selectCashier(cashierValue)
     cy.get('[type="radio"]').each(($radio)=>{
         if ($radio.val()===cashierValue){
             cy.wrap($radio).check()
@@ -42,7 +41,6 @@ Then('I Calculate {string} total cost',function(itemName:string){
         }).then(()=>{
             console.log(quantity,formatPrice,formatTotalPrice)
             expect(quantity*formatPrice).to.equal(formatTotalPrice)
-           // cy.wrap(quantity*formatPrice).should('equal',formatTotalPrice)
         })
     })
 })
